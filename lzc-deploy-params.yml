@@ -1,0 +1,34 @@
+params:
+  - id: enable_custom_access_domain
+    type: bool
+    name: "Enable Custom Access Domain"
+    description: "Whether to enable custom  access domain，if not set ,will use lazycat domain. see https://coder.com/docs/admin/setup"
+    default_value: false
+
+  - id: custom_access_domain
+    type: string
+    name: "Custom Access Domain"
+    description: "Custom Access domain for the application"
+    default_value: ""
+    optional: true
+
+  - id: disable_password_auth
+    type: bool
+    name: "Disable Password Authentication"
+    description: "Disable built-in email/password authentication (OIDC only mode)"
+    default_value: false
+    optional: true
+
+locales:
+  zh:
+    enable_custom_access_domain:
+      name: "启用自定义Access域名"
+      description: "是否启用自定义Access域名，如果不启用，则会自动使用懒猫微服域名。详见 https://coder.com/docs/admin/setup"
+
+    custom_access_domain:
+      name: "自定义Access域名"
+      description: "应用程序的自定义域名"
+
+    disable_password_auth:
+      name: "禁用密码认证"
+      description: "禁用内置的邮箱/密码登录方式（仅使用 OIDC 登录）"
