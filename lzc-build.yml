@@ -12,5 +12,7 @@ icon: ./icon.png
 compose_override:
   services:
     coder-service:
+      group_add:
+        - "996"
       volumes:
         - /data/playground/docker.sock:/var/run/docker.sock
