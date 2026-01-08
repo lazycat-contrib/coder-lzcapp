@@ -16,3 +16,6 @@ compose_override:
         - "996"
       volumes:
         - /data/playground/docker.sock:/var/run/docker.sock
+      cap_add:
+        - SYS_ADMIN
+        - DAC_OVERRIDE
