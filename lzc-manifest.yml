@@ -1,12 +1,3 @@
-name: Coder
-package: community.lazycat.app.coder
-version: 2.28.6
-min_os_version: 1.3.8
-description: "Self-Hosted Cloud Development Environments"
-license: AGPL-3.0
-homepage: https://github.com/coder/coder
-author: Coder
-
 application:
   subdomain: coder
   oidc_redirect_path: /api/v2/users/oidc/callback
@@ -71,11 +62,3 @@ services:
       - database
     cpu_shares: 1024
     mem_limit: 2048M
-
-locales:
-  en:
-    name: "Coder"
-    description: "Self-Hosted Cloud Development Environments"
-  zh:
-    name: "Coder"
-    description: "自托管云端开发环境，在任何设备上使用浏览器访问完整的开发环境"
