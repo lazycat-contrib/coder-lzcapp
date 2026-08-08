@@ -6,7 +6,6 @@ application:
   upstreams:
     - location: /
       backend: http://coder-service:7080/
-
 services:
   database:
     image: registry.lazycat.cloud/czyt/library/postgres:dcad62678269633a
@@ -25,24 +24,25 @@ services:
       retries: 5
     cpu_shares: 512
     mem_limit: 1024M
-
   coder-service:
     # ghcr.io/coder/coder:v2.28.6
-    image: registry.lazycat.cloud/czyt/coder/coder:9d2f5ca4beeaa082
+    # upstream: ghcr.io/coder/coder:v2.36.0
+    image: registry.lazycat.cloud/czyt/coder/coder:164204dfbaf7feef
     user: "1000"
     environment:
       # 数据库配置
       - CODER_PG_CONNECTION_URL=postgresql://coder:coderpassword@database/coderdb?sslmode=disable
       - CODER_HTTP_ADDRESS=0.0.0.0:7080
       # 访问地址配置
+
 {{if .U.enable_custom_access_domain}}
       - CODER_ACCESS_URL=https://{{.U.custom_access_domain}}
 {{else}}
       - CODER_ACCESS_URL=https://${LAZYCAT_APP_DOMAIN}
-{{end}}
-
       # OIDC 认证配置 - 由懒猫统一 OIDC 系统自动注入
       - CODER_OIDC_ISSUER_URL=${LAZYCAT_AUTH_OIDC_ISSUER_URI}
+{{end}}
+
       - CODER_OIDC_CLIENT_ID=${LAZYCAT_AUTH_OIDC_CLIENT_ID}
       - CODER_OIDC_CLIENT_SECRET=${LAZYCAT_AUTH_OIDC_CLIENT_SECRET}
       - CODER_OIDC_EMAIL_DOMAIN=
@@ -52,12 +52,10 @@ services:
       - CODER_OIDC_IGNORE_EMAIL_VERIFIED=false
       - CODER_OIDC_IGNORE_USERINFO=false
       - CODER_DISABLE_PASSWORD_AUTH={{ .U.disable_password_auth }}
-
     binds:
       - /lzcapp/var/data:/home/coder
     setup_script: |
-        chown -R 1000:1000 /home/coder
-
+      chown -R 1000:1000 /home/coder
     depends_on:
       - database
     cpu_shares: 1024
