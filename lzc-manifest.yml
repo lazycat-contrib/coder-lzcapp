@@ -26,8 +26,8 @@ services:
     mem_limit: 1024M
   coder-service:
     # ghcr.io/coder/coder:v2.28.6
-    # upstream: ghcr.io/coder/coder:v2.37.2
-    image: registry.lazycat.cloud/czyt/coder/coder:e038ef2f8c7164c2
+    # upstream: ghcr.io/coder/coder:v2.37.3
+    image: registry.lazycat.cloud/czyt/coder/coder:f3bbfe17e545adb4
     user: "1000"
     environment:
       # 数据库配置
@@ -47,9 +47,9 @@ services:
       - CODER_OIDC_SCOPES=openid,profile,email
       - CODER_OIDC_SIGN_IN_TEXT=Sign in with Lazycat
       - CODER_OIDC_ICON_URL=
+      - CODER_OIDC_IGNORE_EMAIL_VERIFIED=false
 {{end}}
 
-      - CODER_OIDC_IGNORE_EMAIL_VERIFIED=false
       - CODER_OIDC_IGNORE_USERINFO=false
       - CODER_DISABLE_PASSWORD_AUTH={{ .U.disable_password_auth }}
     binds:
