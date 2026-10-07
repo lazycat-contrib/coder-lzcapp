@@ -26,8 +26,8 @@ services:
     mem_limit: 1024M
   coder-service:
     # ghcr.io/coder/coder:v2.28.6
-    # upstream: ghcr.io/coder/coder:v2.37.4
-    image: registry.lazycat.cloud/czyt/coder/coder:9bde11a8ba9862c0
+    # upstream: ghcr.io/coder/coder:v2.38.0
+    image: registry.lazycat.cloud/czyt/coder/coder:c8580d3802dda699
     user: "1000"
     environment:
       # 数据库配置
@@ -49,9 +49,8 @@ services:
       - CODER_OIDC_ICON_URL=
       - CODER_OIDC_IGNORE_EMAIL_VERIFIED=false
       - CODER_OIDC_IGNORE_USERINFO=false
-{{end}}
-
       - CODER_DISABLE_PASSWORD_AUTH={{ .U.disable_password_auth }}
+{{end}}
     binds:
       - /lzcapp/var/data:/home/coder
     setup_script: |
