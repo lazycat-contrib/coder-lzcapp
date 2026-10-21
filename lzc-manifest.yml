@@ -26,8 +26,8 @@ services:
     mem_limit: 1024M
   coder-service:
     # ghcr.io/coder/coder:v2.28.6
-    # upstream: ghcr.io/coder/coder:v2.38.0
-    image: registry.lazycat.cloud/czyt/coder/coder:c8580d3802dda699
+    # upstream: ghcr.io/coder/coder:v2.38.1
+    image: registry.lazycat.cloud/czyt/coder/coder:6dd328f35aaa960e
     user: "1000"
     environment:
       # 数据库配置
